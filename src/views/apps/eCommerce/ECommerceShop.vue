@@ -24,13 +24,13 @@
                         icon="MenuIcon"
                         @click.stop="toggleFilterSidebar" />
 
-                    <p class="lg:inline-flex hidden font-semibold algolia-filters-label">Filters</p>
+                    <p class="lg:inline-flex hidden font-semibold algolia-filters-label">所有品类</p>
 
                     <div class="flex justify-between items-end flex-grow">
                         <!-- Stats -->
                         <ais-stats>
                             <p slot-scope="{ hitsPerPage, nbPages, nbHits, page, processingTimeMS, query }" class="font-semibold md:block hidden">
-                                {{ nbHits }} results found in {{ processingTimeMS }}ms
+                                找到 {{ nbHits }} 个商品，耗时 {{ processingTimeMS }} 毫秒
                             </p>
                         </ais-stats>
 
@@ -38,9 +38,9 @@
 
                             <!-- SORTING -->
                             <ais-sort-by :items="[
-                                { value: 'instant_search', label: 'Featured' },
-                                { value: 'instant_search_price_asc', label: 'Lowest Price' },
-                                { value: 'instant_search_price_desc', label: 'Highest Price' },
+                                { value: 'instant_search', label: '价格排序' },
+                                { value: 'instant_search_price_asc', label: '从低到高' },
+                                { value: 'instant_search_price_desc', label: '从高到低' },
                             ]">
                                 <vs-select
                                     :value="currentRefinement"
@@ -80,7 +80,7 @@
                     <div class="p-6 filter-container">
 
                         <!-- MULTI RANGE -->
-                        <h6 class="font-bold mb-3">Multi Range</h6>
+                        <h6 class="font-bold mb-3">价格区间</h6>
                         <ais-numeric-menu attribute="price" :items="numericItems">
                             <ul slot-scope="{ items, refine, createURL }">
                                 <li
@@ -98,12 +98,12 @@
                         <vs-divider />
 
                         <!-- PRICE SLIDER -->
-                        <h6 class="font-bold mb-3">Slider</h6>
+                        <h6 class="font-bold mb-3">价格滑块</h6>
                         <ais-range-input attribute="price">
                             <div slot-scope="{ currentRefinement, range, refine }">
                                 <vs-slider
                                     class="algolia-price-slider"
-                                    text-fixed="$"
+                                    text-fixed="元"
                                     :min="range.min"
                                     :max="range.max"
                                     :value="toValue(currentRefinement, range)"
@@ -114,7 +114,7 @@
                         <vs-divider />
 
                         <!-- CATEGORIES -->
-                        <h6 class="font-bold mb-4">Category</h6>
+                        <h6 class="font-bold mb-4">类别</h6>
                         <ais-hierarchical-menu :attributes="algoliaCategories">
                             <div slot-scope="{
                               items,
@@ -132,7 +132,7 @@
                         <vs-divider />
 
                         <!-- Brands -->
-                        <h6 class="font-bold mb-4">Brand</h6>
+                        <h6 class="font-bold mb-4">品牌</h6>
                         <ais-refinement-list attribute="brand">
                             <div slot-scope="{
                               items,
@@ -140,7 +140,7 @@
                               refine,
                             }">
                                 <ul>
-                                    <li v-if="isFromSearch && !items.length">No results.</li>
+                                    <li v-if="isFromSearch && !items.length">没有商品</li>
                                     <li v-for="item in items" :key="item.value" class="mb-2 flex items-center justify-between">
                                         <vs-checkbox v-model="item.isRefined" class="ml-0" @click="refine(item.value)">{{ item.label }}</vs-checkbox>
                                         <span>{{ item.count }}</span>
@@ -151,7 +151,7 @@
                         <vs-divider />
 
                         <!-- Rating -->
-                        <h6 class="font-bold mb-3">Rating</h6>
+                        <h6 class="font-bold mb-3">星级</h6>
                         <ais-rating-menu attribute="rating">
                             <ul slot-scope="{ items, refine, createURL }">
                                 <li v-for="item in items" :key="item.value" class="mb-2">
@@ -169,7 +169,7 @@
                         <vs-divider />
 
                         <ais-clear-refinements class="flex justify-center">
-                            <vs-button slot-scope="{ canRefine, refine, createURL }" @click.prevent="refine" :disabled="!canRefine">CLEAR ALL FILTERS</vs-button>
+                            <vs-button slot-scope="{ canRefine, refine, createURL }" @click.prevent="refine" :disabled="!canRefine">清除所有选择</vs-button>
                         </ais-clear-refinements>
                     </div>
                 </vs-sidebar>
@@ -183,10 +183,10 @@
                             <div class="relative mb-8">
 
                                 <!-- SEARCH INPUT -->
-                                <vs-input class="w-full vs-input-shadow-drop vs-input-no-border d-theme-input-dark-bg" placeholder="Search here" v-model="currentRefinement" @input="refine($event)" @keyup.esc="refine('')" size="large" />
+                                <vs-input class="w-full vs-input-shadow-drop vs-input-no-border d-theme-input-dark-bg" placeholder="输入要搜索的关键字..." v-model="currentRefinement" @input="refine($event)" @keyup.esc="refine('')" size="large" />
 
                                 <!-- SEARCH LOADING -->
-                                <span :hidden="!isSearchStalled">Loading...</span>
+                                <span :hidden="!isSearchStalled">搜索中...</span>
 
                                 <!-- SEARCH ICON -->
                                 <div slot="submit-icon" class="absolute top-0 right-0 py-4 px-6" v-show="!currentRefinement">
@@ -201,7 +201,7 @@
                         </div>
                     </ais-search-box>
 
-                    <!-- SEARCH RESULT -->
+                    <!-- 搜索结果 -->
                     <ais-hits>
                         <div slot-scope="{ items }">
 
@@ -222,7 +222,7 @@
                                                         @click="toggleItemInWishList(item)">
                                                         <feather-icon icon="HeartIcon" :svgClasses="[{'text-danger fill-current' : isInWishList(item.objectID)}, 'h-4 w-4']" />
 
-                                                        <span class="text-sm font-semibold ml-2">WISHLIST</span>
+                                                        <span class="text-sm font-semibold ml-2">加入收藏</span>
                                                     </div>
 
                                                     <!-- SECONDARY BUTTON: ADD-TO/VIEW-IN CART -->
@@ -231,8 +231,8 @@
                                                         @click="cartButtonClicked(item)">
                                                         <feather-icon icon="ShoppingBagIcon" svgClasses="h-4 w-4" />
 
-                                                        <span class="text-sm font-semibold ml-2" v-if="isInCart(item.objectID)">VIEW IN CART</span>
-                                                        <span class="text-sm font-semibold ml-2" v-else>ADD TO CART</span>
+                                                        <span class="text-sm font-semibold ml-2" v-if="isInCart(item.objectID)">查看购物车</span>
+                                                        <span class="text-sm font-semibold ml-2" v-else>添加购物车</span>
                                                     </div>
                                                 </div>
                                             </template>
@@ -254,15 +254,15 @@
                                                 class="item-view-primary-action-btn p-3 rounded-lg flex flex-grow items-center justify-center cursor-pointer mb-3"
                                                 @click="toggleItemInWishList(item)">
                                                 <feather-icon icon="HeartIcon" :svgClasses="[{'text-danger fill-current' : isInWishList(item.objectID)}, 'h-4 w-4']" />
-                                                <span class="text-sm font-semibold ml-2">WISHLIST</span>
+                                                <span class="text-sm font-semibold ml-2">加入收藏</span>
                                             </div>
                                             <div
                                                 class="item-view-secondary-action-btn bg-primary p-3 rounded-lg flex flex-grow items-center justify-center text-white cursor-pointer"
                                                 @click="cartButtonClicked(item)">
                                                 <feather-icon icon="ShoppingBagIcon" svgClasses="h-4 w-4" />
 
-                                                <span class="text-sm font-semibold ml-2" v-if="isInCart(item.objectID)">VIEW IN CART</span>
-                                                <span class="text-sm font-semibold ml-2" v-else>ADD TO CART</span>
+                                                <span class="text-sm font-semibold ml-2" v-if="isInCart(item.objectID)">查看购物车</span>
+                                                <span class="text-sm font-semibold ml-2" v-else>添加购物车</span>
                                             </div>
                                         </template>
                                     </item-list-view>
@@ -295,7 +295,7 @@
                     </ais-pagination>
 
                     <!-- ALGOLIA LOGO -->
-                    <img class="flex mt-4 mx-auto h-8" src="@/assets/images/pages/eCommerce/Algolia-logo.png" alt="algolia-logo">
+                  <!--  <img class="flex mt-4 mx-auto h-8" src="@/assets/images/pages/eCommerce/Algolia-logo.png" alt="algolia-logo">-->
                 </div>
             </div>
         </ais-instant-search>
@@ -322,11 +322,11 @@ export default {
             windowWidth: window.innerWidth,
             currentItemView: 'item-grid-view',
             numericItems: [
-              { label: 'All' },
-              { label: '<= $10', end: 10 },
-              { label: '$10 - $100', start: 10, end: 100 },
-              { label: '$100 - $500', start: 100, end: 500 },
-              { label: '>= $500', start: 500 },
+              { label: '全部价格' },
+              { label: '<= 10', end: 10 },
+              { label: '10 - 100', start: 10, end: 100 },
+              { label: '100 - 500', start: 100, end: 500 },
+              { label: '>= 500', start: 500 },
             ],
             algoliaCategories: [
               'hierarchicalCategories.lvl0',

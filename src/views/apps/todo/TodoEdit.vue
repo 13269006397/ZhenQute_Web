@@ -10,9 +10,9 @@
 
 <template>
     <vs-prompt
-        vs-title="Edit Task"
-        vs-accept-text= "Submit"
-        vs-cancel-text = "Remove"
+        vs-title="修改待办"
+        vs-accept-text= "确认"
+        vs-cancel-text = "移除"
         vs-button-cancel = "border"
         @vs-cancel="removeTodo"
         @vs-accept="submitTodo"
@@ -47,7 +47,7 @@
                 <div class="vx-row">
                     <div class="vx-col w-full">
                         <vs-input v-validate="'required'" name="title" class="w-full mb-4 mt-5" placeholder="Title" v-model="titleLocal" />
-                        <vs-textarea rows="5" label="Add description" v-model="descLocal" />
+                        <vs-textarea rows="5" label="添加描述" v-model="descLocal" />
                     </div>
                 </div>
 

@@ -21,7 +21,7 @@
             :hideScrollToTop="hideScrollToTop"
             @toggleHideScrollToTop="toggleHideScrollToTop"
             />
-        <vx-sidebar :sidebarItems="sidebarItems" :logo="require('@/assets/images/logo/logo.png')" title="ZhenQute" parent=".layout--main" />
+        <vx-sidebar :sidebarItems="sidebarItems" :logo="require('@/assets/images/logo/logo.png')" title="欣酋科技" parent=".layout--main" />
 
         <div id="content-area" :class="[contentAreaClass, {'show-overlay': bodyOverlay}]">
 
@@ -117,23 +117,23 @@ export default {
             steps: [
                 {
                     target: '#btnSidebarToggler',
-                    content: 'Toggle Collapse Sidebar.'
+                    content: '切换折叠侧边栏'
                 },
                 {
                     target: '.vx-navbar__starred-pages',
-                    content: 'Create your own bookmarks. You can also re-arrange them using drag & drop.'
+                    content: '创建自己的书签。您还可以使用拖放重新排列它们'
                 },
                 {
                     target: '.i18n-locale',
-                    content: 'You can change language from here.'
+                    content: '你可以从这里改变语言'
                 },
                 {
                     target: '.navbar-fuzzy-search',
-                    content: 'Try fuzzy search to visit pages in flash.'
+                    content: '尝试用模糊搜索来访问页面'
                 },
                 {
                     target: '.customizer-btn',
-                    content: 'Customize template based your preference',
+                    content: '根据您的喜好定制模板',
                     params: {
                         placement: 'left'
                     }

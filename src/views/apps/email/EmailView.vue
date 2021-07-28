@@ -1,10 +1,6 @@
 <!-- =========================================================================================
     File Name: EmailView.vue
     Description: Email Application - Single Email View (Inbox)
-    ----------------------------------------------------------------------------------------
-    Item Name: Vuesax Admin - VueJS Dashboard Admin Template
-      Author: Pixinvent
-    Author URL: http://www.themeforest.net/user/pixinvent
 ========================================================================================== -->
 
 
@@ -32,19 +28,19 @@
                                     <ul class="my-2">
                                         <li class="px-4 mb-2 flex items-start cursor-pointer hover:text-primary" @click="moveTo('inboxed')" v-if="currentMail.mailType != 'inboxed'">
                                             <feather-icon icon="MailIcon" svg-classes="h-5 w-5" />
-                                            <span class="ml-3">Inbox</span>
+                                            <span class="ml-3">收件箱</span>
                                         </li>
                                         <li class="px-4 mb-2 flex items-start cursor-pointer hover:text-primary" @click="moveTo('drafted')" v-if="currentMail.mailType != 'drafted'">
                                             <feather-icon icon="Edit2Icon" svg-classes="h-5 w-5"></feather-icon>
-                                            <span class="ml-3">Draft</span>
+                                            <span class="ml-3">草稿</span>
                                         </li>
                                         <li class="px-4 mb-2 flex items-start cursor-pointer hover:text-primary" @click="moveTo('spam')" v-if="currentMail.mailType != 'spam'">
                                             <feather-icon icon="InfoIcon" svg-classes="h-5 w-5"></feather-icon>
-                                            <span class="ml-3">Spam</span>
+                                            <span class="ml-3">垃圾邮件</span>
                                         </li>
                                         <li class="px-4 flex items-start cursor-pointer hover:text-primary" @click="moveTo('trashed')" v-if="currentMail.mailType != 'trashed'">
                                             <feather-icon icon="TrashIcon" svg-classes="h-5 w-5"></feather-icon>
-                                            <span class="ml-3">Trash</span>
+                                            <span class="ml-3">废物箱</span>
                                         </li>
                                     </ul>
                                 </vs-dropdown-menu>
@@ -144,7 +140,7 @@
                                 <div class="vx-row" v-if="threadMail.attachments.length">
                                     <div class="vx-col w-full border-b border-l-0 border-r-0 border-t-0 d-theme-border-grey-light border-solid mb-6 flex">
                                         <feather-icon icon="PaperclipIcon" class="mr-2" />
-                                        <span class="block py-4">ATTACHMENTS</span>
+                                        <span class="block py-4">附件</span>
                                     </div>
                                     <div class="flex">
                                         <div class="mail__attachment" v-for="(attachment, index) in threadMail.attachments" :key="index">
@@ -203,7 +199,7 @@
                                 <div class="vx-row" v-if="currentMail.attachments.length">
                                     <div class="vx-col w-full border-b border-l-0 border-r-0 border-t-0 d-theme-border-grey-light border-solid mb-6 flex">
                                         <feather-icon icon="PaperclipIcon" class="mr-2" />
-                                        <span class="block py-4">ATTACHMENTS</span>
+                                        <span class="block py-4">标签</span>
                                     </div>
                                     <div class="flex">
                                         <div class="mail__attachment" v-for="(attachment, index) in currentMail.attachments" :key="index">
@@ -220,7 +216,7 @@
                             <vx-card>
                                 <div class="vx-row">
                                     <div class="vx-col w-full flex justify-between">
-                                        <span class="text-lg">Click here to <span class="text-primary font-semibold cursor-pointer">Reply</span> or <span class="text-primary font-semibold cursor-pointer">Forward</span></span>
+                                        <span class="text-lg">点击这里<span class="text-primary font-semibold cursor-pointer">回复</span> 或者 <span class="text-primary font-semibold cursor-pointer">转发</span></span>
                                         <feather-icon icon="PaperclipIcon"></feather-icon>
                                     </div>
                                 </div>

@@ -22,7 +22,7 @@
             <!-- Month Name -->
             <div class="vx-col w-1/3 items-center sm:flex hidden">
               <!-- Add new event button -->
-              <vs-button icon-pack="feather" icon="icon-plus" @click="promptAddNewEvent(new Date())">Add</vs-button>
+              <vs-button icon-pack="feather" icon="icon-plus" @click="promptAddNewEvent(new Date())">添加</vs-button>
             </div>
 
             <!-- Current Month -->
@@ -37,13 +37,13 @@
             <div class="vx-col sm:w-1/3 w-full flex justify-center">
               <vs-button
                 class="rounded-r-none p-3 md:px-8 md:py-3"
-                @click="calendarView = 'month'">Month</vs-button>
+                @click="calendarView = 'month'">月</vs-button>
               <vs-button
                 class="rounded-r-none rounded-l-none p-3 md:px-8 md:py-3"
-                @click="calendarView = 'week'">Week</vs-button>
+                @click="calendarView = 'week'">周</vs-button>
               <vs-button
                 class="rounded-l-none p-3 md:px-8 md:py-3"
-                @click="calendarView = 'year'">Year</vs-button>
+                @click="calendarView = 'year'">年</vs-button>
             </div>
           </div>
 
@@ -66,11 +66,11 @@
       </calendar-view>
     </div>
 
-    <!-- ADD EVENT -->
+    <!-- 新增事件 -->
     <vs-prompt
         class="calendar-event-dialog"
-        vs-title="Add Event"
-        vs-accept-text= "Add Event"
+        vs-title="新增事件"
+        vs-accept-text= "提交"
         @vs-accept="addEvent"
         :vs-is-valid="validForm"
         :vs-active.sync="activePromptAddEvent">
@@ -98,25 +98,25 @@
 
         </div>
 
-        <vs-input name="event-name" v-validate="'required'" class="w-full" label-placeholder="Event Title" v-model="title"></vs-input>
+        <vs-input name="event-name" v-validate="'required'" class="w-full" label-placeholder="事件标题" v-model="title"></vs-input>
         <div class="my-4">
-            <small class="date-label">Start Date</small>
+            <small class="date-label">开始时间</small>
             <datepicker name="start-date" v-model="startDate" :disabled="disabledFrom"></datepicker>
         </div>
         <div class="my-4">
-            <small class="date-label">End Date</small>
+            <small class="date-label">结束时间</small>
             <datepicker :disabledDates="disabledDatesTo" name="end-date" v-model="endDate"></datepicker>
         </div>
-        <vs-input name="event-url" v-validate="'url'" class="w-full mt-6" label-placeholder="Event URL" v-model="url" :color="!errors.has('event-url') ? 'success' : 'danger'"></vs-input>
+        <vs-input name="event-url" v-validate="'url'" class="w-full mt-6" label-placeholder="事件链接" v-model="url" :color="!errors.has('event-url') ? 'success' : 'danger'"></vs-input>
 
     </vs-prompt>
 
-    <!-- EDIT EVENT -->
+    <!-- 修改事件 -->
     <vs-prompt
         class="calendar-event-dialog"
-        vs-title="Edit Event"
-        vs-accept-text= "Submit"
-        vs-cancel-text = "Remove"
+        vs-title="修改事件"
+        vs-accept-text= "提交"
+        vs-cancel-text = "移除"
         vs-button-cancel = "border"
         @vs-cancel="removeEvent"
         @vs-accept="editEvent"
@@ -146,16 +146,16 @@
 
         </div>
 
-        <vs-input name="event-name" v-validate="'required'" class="w-full" label-placeholder="Event Title" v-model="title"></vs-input>
+        <vs-input name="event-name" v-validate="'required'" class="w-full" label-placeholder="事件标题" v-model="title"></vs-input>
         <div class="my-4">
-            <small class="date-label">Start Date</small>
+            <small class="date-label">开始时间</small>
             <datepicker :disabledDates="disabledDatesFrom" name="start-date" v-model="startDate"></datepicker>
         </div>
         <div class="my-4">
-            <small class="date-label">End Date</small>
+            <small class="date-label">结束时间</small>
             <datepicker :disabledDates="disabledDatesTo" name="end-date" v-model="endDate"></datepicker>
         </div>
-        <vs-input name="event-url" v-validate="'url'" class="w-full mt-6" label-placeholder="Event URL" v-model="url" :color="!errors.has('event-url') ? 'success' : 'danger'"></vs-input>
+        <vs-input name="event-url" v-validate="'url'" class="w-full mt-6" label-placeholder="事件链接" v-model="url" :color="!errors.has('event-url') ? 'success' : 'danger'"></vs-input>
 
     </vs-prompt>
   </div>

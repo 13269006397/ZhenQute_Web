@@ -2,10 +2,6 @@
 	File Name: TheNavbar.vue
 	Description: Navbar component
 	Component Name: TheNavbar
-	----------------------------------------------------------------------------------------
-	Item Name: Vuesax Admin - VueJS Dashboard Admin Template
-	Author: Pixinvent
-	Author URL: http://www.themeforest.net/user/pixinvent
 ========================================================================================== -->
 
 
@@ -61,7 +57,8 @@
 			<vs-dropdown vs-custom-content vs-trigger-click class="cursor-pointer">
 				<span class="cursor-pointer flex i18n-locale"><img class="h-4 w-5" :src="require(`@/assets/images/flags/${$i18n.locale}.png`)" :alt="$i18n.locale" /><span class="hidden sm:block ml-2">{{ getCurrentLocaleData.lang }}</span></span>
 				<vs-dropdown-menu class="w-48 i18n-dropdown vx-navbar-dropdown">
-					<vs-dropdown-item @click="updateLocale('en')"><img class="h-4 w-5 mr-1" src="@/assets/images/flags/en.png" alt="en" /> &nbsp;English</vs-dropdown-item>
+          <vs-dropdown-item @click="updateLocale('ch')"><img class="h-4 w-5 mr-1" src="@/assets/images/flags/ch.png" alt="ch" /> 中国</vs-dropdown-item>
+					<vs-dropdown-item @click="updateLocale('en')"><img class="h-4 w-5 mr-1" src="@/assets/images/flags/en.png" alt="en" />  English</vs-dropdown-item>
 					<vs-dropdown-item @click="updateLocale('fr')"><img class="h-4 w-5 mr-1" src="@/assets/images/flags/fr.png" alt="fr" /> &nbsp;French</vs-dropdown-item>
 					<vs-dropdown-item @click="updateLocale('de')"><img class="h-4 w-5 mr-1" src="@/assets/images/flags/de.png" alt="de" /> &nbsp;German</vs-dropdown-item>
 					<vs-dropdown-item @click="updateLocale('pt')"><img class="h-4 w-5 mr-1" src="@/assets/images/flags/pt.png" alt="pt" /> &nbsp;Portuguese</vs-dropdown-item>
@@ -87,7 +84,7 @@
             </div>
             <feather-icon icon="SearchIcon" @click="showFullSearch = true" class="cursor-pointer navbar-fuzzy-search ml-4"></feather-icon>
 
-            <!-- CART DROPDOWN -->
+            <!-- 购物车弹窗 -->
             <vs-dropdown vs-custom-content vs-trigger-click class="cursor-pointer">
                 <feather-icon icon="ShoppingCartIcon" class="cursor-pointer ml-4 mr-6 mt-1" :badge="cartItems.length"></feather-icon>
                 <vs-dropdown-menu class="cart-dropdown vx-navbar-dropdown" :class="{'dropdown-custom': cartItems.length}">
@@ -95,8 +92,8 @@
                     <!-- IF CART HAVE ITEMS: HEADER -->
                     <template v-if="cartItems.length">
                         <div class="notification-header text-center p-5 bg-primary text-white">
-                            <h3 class="text-white">{{ cartItems.length }} Item<span v-show="cartItems.length > 1">s</span></h3>
-                            <p class="opacity-75">In Your Cart</p>
+                            <p class="opacity-75">购物车</p>
+                            <h3 class="text-white">{{ cartItems.length }} 件商品<span v-show="cartItems.length > 1"></span></h3>
                         </div>
 
                         <!-- CART ITEMS -->
@@ -114,7 +111,7 @@
                                     <span class="font-medium block cart-item-title truncate">{{ item.name }}</span>
                                     <small class="truncate mb-2">{{ item.description }}</small>
                                     <div class="flex items-center justify-between">
-                                        <span class="text-sm font-medium">{{ item.quantity }} <small>x</small> ${{ item.price }}</span>
+                                        <span class="text-sm font-medium">{{ item.quantity }} <small> x </small> {{ item.price }}</span>
                                         <feather-icon icon="XIcon" svgClasses="h-4 w-4 cursor-pointer text-danger" class="hover:text-danger" @click.stop="removeItemFromCart(item)" />
                                     </div>
                                 </div>
@@ -127,7 +124,7 @@
 
                             <span class="flex items-center justify-center">
                               <feather-icon icon="ShoppingCartIcon" svgClasses="h-4 w-4"></feather-icon>
-                              <span class="ml-2">Checkout</span>
+                              <span class="ml-2">去结算</span>
                             </span>
 
                         </div>
@@ -135,7 +132,7 @@
 
                     <!-- IF CART IS EMPTY -->
                     <template v-else>
-                        <p class="p-4">Your Cart Is Empty.</p>
+                        <p class="p-4">购物车是空的</p>
                     </template>
                 </vs-dropdown-menu>
             </vs-dropdown>
@@ -146,14 +143,14 @@
 				<vs-dropdown-menu class="notification-dropdown dropdown-custom vx-navbar-dropdown">
 
 					<div class="notification-top text-center p-5 bg-primary text-white">
-						<h3 class="text-white">{{ unreadNotifications.length }} New</h3>
-						<p class="opacity-75">App Notifications</p>
+            <p class="opacity-75">消息通知</p>
+						<h3 class="text-white">{{ unreadNotifications.length }} 新消息</h3>
 					</div>
 
 					<VuePerfectScrollbar ref="mainSidebarPs" class="scroll-area--nofications-dropdown p-0 mb-10" :settings="settings">
 					<ul class="bordered-items">
 						<li v-for="ntf in unreadNotifications" :key="ntf.index" class="flex justify-between px-4 py-4 notification cursor-pointer">
-							<div class="flex items-start">
+							<div @click="$router.push(ntf.type)" class="flex items-start">
 								<feather-icon :icon="ntf.icon" :svgClasses="[`text-${ntf.category}`, 'stroke-current mr-1 h-6 w-6']"></feather-icon>
 								<div class="mx-2">
 									<span class="font-medium block notification-title" :class="[`text-${ntf.category}`]">{{ ntf.title }}</span>
@@ -181,7 +178,11 @@
                         border-solid
                         d-theme-border-grey-light
                         cursor-pointer">
-                        <span>View All Notifications</span>
+                      <div @click="$router.push('/apps/chat')">
+                            <span class="flex items-center justify-center">
+                              <span class="ml-2">全部已读</span>
+                            </span>
+                      </div>
                     </div>
 				</vs-dropdown-menu>
 			</vs-dropdown>
@@ -296,11 +297,11 @@ export default {
             searchQuery: '',
             showFullSearch: false,
             unreadNotifications: [
-                { index: 0, title: 'New Message', msg: 'Are your going to meet me tonight?', icon: 'MessageSquareIcon', time: 'Wed Jan 30 2019 07:45:23 GMT+0000 (GMT)', category: 'primary' },
-                { index: 1, title: 'New Order Recieved', msg: 'You got new order of goods.', icon: 'PackageIcon', time: 'Wed Jan 30 2019 07:45:23 GMT+0000 (GMT)', category: 'success' },
-                { index: 2, title: 'Server Limit Reached!', msg: 'Server have 99% CPU usage.', icon: 'AlertOctagonIcon', time: 'Thu Jan 31 2019 07:45:23 GMT+0000 (GMT)', category: 'danger' },
-                { index: 3, title: 'New Mail From Peter', msg: 'Cake sesame snaps cupcake', icon: 'MailIcon', time: 'Fri Feb 01 2019 07:45:23 GMT+0000 (GMT)', category: 'primary' },
-                { index: 4, title: 'Bruce\'s Party', msg: 'Chocolate cake oat cake tiramisu', icon: 'CalendarIcon', time: 'Fri Feb 02 2019 07:45:23 GMT+0000 (GMT)', category: 'warning' },
+                { index: 0, title: '小蛔虫',type:'/apps/chat', msg: '宝，下课一起去吃好吃的叭？', icon: 'MessageSquareIcon', time: '2021-07-19 16:43:12', category: 'primary' },
+               /* { index: 1, title: 'New Order Recieved', msg: 'You got new order of goods.', icon: 'PackageIcon', time: 'Wed Jan 30 2019 07:45:23 GMT+0000 (GMT)', category: 'success' },*/
+               /* { index: 1, title: 'Server Limit Reached!', msg: 'Server have 99% CPU usage.', icon: 'AlertOctagonIcon', time: 'Thu Jan 31 2019 07:45:23 GMT+0000 (GMT)', category: 'danger' },*/
+                { index: 1, title: '联合国儿童基金',type: '/apps/email', msg: '小仙女您好，您有新的邮件请查收', icon: 'MailIcon', time: '2021-06-12 21:03:09', category: 'success' },
+                { index: 2, title: '待办提醒',type: '/apps/todo', msg: '还有29天结束集训噢 宝', icon: 'CalendarIcon', time: '2021-07-19 16:43:12', category: 'warning' },
             ],
             settings: { // perfectscrollbar settings
                 maxScrollbarLength: 60,
@@ -334,10 +335,11 @@ export default {
         // I18N
         getCurrentLocaleData() {
             const locale = this.$i18n.locale;
-            if (locale == "en") return { flag: "us", lang: 'English' }
+            if (locale == "ch") return { flag: "ch", lang: '中国' }
             else if (locale == "pt") return { flag: "br", lang: 'Portuguese' }
             else if (locale == "fr") return { flag: "fr", lang: 'French' }
             else if (locale == "de") return { flag: "de", lang: 'German' }
+            else if (locale == "en") return { flag: "us", lang: 'English' }
         },
 
         // BOOKMARK & SEARCH
@@ -443,15 +445,15 @@ export default {
             var years = timeDiff;
 
             if (years > 0) {
-                return years + (years > 1 ? ' Years ' : ' Year ') + 'ago';
+                return years + (years > 1 ? '年' : '年') + '前';
             } else if (days > 0) {
-                return days + (days > 1 ? ' Days ' : ' Day ') + 'ago';
+                return days + (days > 1 ? '天' : '天') + '前';
             } else if (hours > 0) {
-                return hours + (hours > 1 ? ' Hrs ' : ' Hour ') + 'ago';
+                return hours + (hours > 1 ? '小时' : '小时') + '前';
             } else if (minutes > 0) {
-                return minutes + (minutes > 1 ? ' Mins ' : ' Min ') + 'ago';
+                return minutes + (minutes > 1 ? '分钟' : '分钟') + '前';
             } else if (seconds > 0) {
-                return seconds + (seconds > 1 ? `${seconds} sec ago` : 'just now');
+                return seconds + (seconds > 1 ? `${seconds} 秒之前` : '刚刚');
             }
 
             return 'Just Now'

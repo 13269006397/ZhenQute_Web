@@ -1,10 +1,6 @@
 <!-- =========================================================================================
 	File Name: ItemGridView.vue
 	Description: Item Component - Grid VIew
-	----------------------------------------------------------------------------------------
-	Item Name: Vuesax Admin - VueJS Dashboard Admin Template
-	Author: Pixinvent
-	Author URL: http://www.themeforest.net/user/pixinvent
 ========================================================================================== -->
 
 <template>
@@ -19,7 +15,7 @@
                     </div>
                     <div class="item-details px-4">
 
-                        <!-- RATING & PRICE -->
+                        <!-- 收藏 & 价格 -->
                         <div class="flex justify-between items-center">
                             <div class="bg-primary flex text-white py-1 px-2 rounded">
                                 <span class="text-sm mr-2">{{ item.rating }}</span>
@@ -28,7 +24,7 @@
                             <h6 class="font-bold">${{ item.price }}</h6>
                         </div>
 
-                        <!-- TITLE & DESCRIPTION -->
+                        <!-- 商品名称 & 商品描述 -->
                         <div class="my-4">
                             <h6 class="truncate font-semibold mb-1">{{ item.name }}</h6>
                             <p class="item-description truncate text-sm">{{ item.description }}</p>
@@ -69,7 +65,7 @@ export default{
 
         .grid-view-img{
             opacity: 0.9;
-        }        
+        }
     }
 }
 </style>

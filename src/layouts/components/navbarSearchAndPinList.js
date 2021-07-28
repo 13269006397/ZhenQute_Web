@@ -13,7 +13,7 @@ export default {
     {index: 5, label: 'Calendar', url: '/apps/calendar/vue-simple-calendar', labelIcon: 'CalendarIcon', highlightAction: true},
     {index: 6, label: 'E-Commerce Shop', url: '/apps/eCommerce/shop', labelIcon: 'ShoppingCartIcon', highlightAction: true},
     {index: 7, label: 'E-Commerce Wish List', url: '/apps/eCommerce/wish-list', labelIcon: 'HeartIcon', highlightAction: false},
-		{index: 8, label: 'E-Commerce Checkout', url: '/apps/eCommerce/checkout', labelIcon: 'CreditCardIcon', highlightAction: false},
+		{index: 8, label: 'E-Commerce ', url: '/apps/eCommerce/checkout', labelIcon: 'CreditCardIcon', highlightAction: false},
 
     // UI ELEMENTS
     {index: 9, label: 'Data List - List View', url: '/ui-elements/data-list/list-view', labelIcon: 'ListIcon', highlightAction: false},

@@ -13,7 +13,7 @@
             :hide-buttons="true">
 
             <!-- tab 1 content -->
-            <tab-content title="Cart" icon="feather icon-shopping-cart" class="mb-5">
+            <tab-content title="购物车" icon="feather icon-shopping-cart" class="mb-5">
 
                 <!-- IF CART HAVE ITEMS -->
                 <div class="vx-row" v-if="cartItems.length">
@@ -27,13 +27,13 @@
                                 <template slot="item-meta">
                                     <h6 class="item-name font-semibold mb-1">{{ item.name }}</h6>
                                     <p class="text-sm mb-2 cursor-pointer">By <span class="text-primary font-semibold">{{ item.brand }}</span></p>
-                                    <p class="text-success text-sm">In Stock</p>
+                                    <p class="text-success text-sm">现货</p>
 
-                                    <p class="mt-4 font-bold text-sm">Quantity</p>
+                                    <p class="mt-4 font-bold text-sm">数量</p>
                                     <vs-input-number min="1" max="10" :value="item.quantity" @input="updateItemQuantity($event, index)" class="inline-flex" />
 
-                                    <p class="font-medium text-grey mt-4">Delivery by, {{ item.delivery_date }}</p>
-                                    <p class="text-success font-medium">{{ item.discount_in_percentage }}% off {{ item.offers_count }} offers Available</p>
+                                    <p class="font-medium text-grey mt-4">送达日期 : {{ item.delivery_date }}</p>
+                                    <p class="text-success font-medium">提供 {{ item.offers_count }} 个 {{ item.discount_in_percentage }}% 折优惠</p>
                                 </template>
 
                                 <!-- SLOT: ACTION BUTTONS -->
@@ -42,14 +42,14 @@
                                     <!-- PRIMARY BUTTON: REMOVE -->
                                     <div class="item-view-primary-action-btn p-3 rounded-lg flex flex-grow items-center justify-center cursor-pointer mb-3" @click="removeItemFromCart(item)">
                                         <feather-icon icon="XIcon" svgClasses="h-4 w-4" />
-                                        <span class="text-sm font-semibold ml-2">REMOVE</span>
+                                        <span class="text-sm font-semibold ml-2">移除</span>
                                     </div>
 
                                     <!-- SECONDARY BUTTON: MOVE-TO/VIEW-IN WISHLIST -->
                                     <div class="item-view-secondary-action-btn bg-primary p-3 rounded-lg flex flex-grow items-center justify-center text-white cursor-pointer" @click="wishListButtonClicked(item)">
                                         <feather-icon icon="HeartIcon" :svgClasses="[{'text-white fill-current': isInWishList(item.objectID)}, 'h-4 w-4']" />
-                                        <span class="text-sm font-semibold ml-2" v-if="isInWishList(item.objectID)">WISHLIST</span>
-                                        <span class="text-sm font-semibold ml-2" v-else>WISHLIST</span>
+                                        <span class="text-sm font-semibold ml-2" v-if="isInWishList(item.objectID)">愿望清单</span>
+                                        <span class="text-sm font-semibold ml-2" v-else>愿望清单</span>
                                     </div>
                                 </template>
                             </item-list-view>
@@ -59,63 +59,63 @@
                     <!-- RIGHT COL -->
                     <div class="vx-col lg:w-1/3 w-full">
                         <vx-card>
-                            <p class="text-grey mb-3">Options</p>
+                            <p class="text-grey mb-3">选项</p>
                             <div class="flex justify-between">
-                                <span class="font-semibold">Coupons</span>
-                                <span class="font-medium text-primary cursor-pointer">Apply</span>
+                                <span class="font-semibold">优惠券</span>
+                                <span class="font-medium text-primary cursor-pointer">应用</span>
                             </div>
 
                             <vs-divider />
 
-                            <p class="font-semibold mb-3">Price Details</p>
+                            <p class="font-semibold mb-3">价格明细</p>
                             <div class="flex justify-between mb-2">
-                                <span class="text-grey">Total MRP</span>
-                                <span>$598</span>
+                                <span class="text-grey">原价</span>
+                                <span>598</span>
                             </div>
                             <div class="flex justify-between mb-2">
-                                <span class="text-grey">Bag Discount</span>
-                                <span class="text-success">-25$</span>
+                                <span class="text-grey">折扣</span>
+                                <span class="text-success">-25</span>
                             </div>
                             <div class="flex justify-between mb-2">
-                                <span class="text-grey">Estimated Tax</span>
-                                <span>$1.3</span>
+                                <span class="text-grey">预计税额</span>
+                                <span>1.3</span>
                             </div>
-                            <div class="flex justify-between mb-2">
+                           <!-- <div class="flex justify-between mb-2">
                                 <span class="text-grey">EMI Eligibility</span>
                                 <a href="#" class="text-primary">Details</a>
-                            </div>
+                            </div>-->
                             <div class="flex justify-between mb-2">
-                                <span class="text-grey">Delivery Charges</span>
-                                <span class="text-success">Free</span>
+                                <span class="text-grey">运费</span>
+                                <span class="text-success">免费</span>
                             </div>
 
                             <vs-divider />
 
                             <div class="flex justify-between font-semibold mb-3">
-                                <span>Total</span>
-                                <span>$574.3</span>
+                                <span>合计</span>
+                                <span>574.3</span>
                             </div>
 
-                            <vs-button class="w-full" @click="$refs.checkoutWizard.nextTab()">PLACE ORDER</vs-button>
+                            <vs-button class="w-full" @click="$refs.checkoutWizard.nextTab()">提交订单</vs-button>
                         </vx-card>
                     </div>
                 </div>
 
                 <!-- IF NO ITEMS IN CART -->
-                <vx-card title="You don't have any items in your cart." v-else>
-                    <vs-button @click="$router.push('/apps/eCommerce/shop')">Browse Shop</vs-button>
+                <vx-card title="购物车里没有商品" v-else>
+                    <vs-button @click="$router.push('/apps/eCommerce/shop')">去商店看看</vs-button>
                 </vx-card>
 
             </tab-content>
 
             <!-- tab 2 content -->
-            <tab-content title="Address" icon="feather icon-home" class="mb-5">
+            <tab-content title="送货地址" icon="feather icon-home" class="mb-5">
 
                 <div class="vx-row">
 
                     <!-- LEFT COL: NEW ADDRESS -->
                     <div class="vx-col lg:w-2/3 w-full">
-                        <vx-card title="Add New Address" subtitle="Be sure to check &quot;Deliver to this address&quot; when you have finished" class="mb-base">
+                        <vx-card title="添加新地址" subtitle="添加完地址，一定要勾选送到这个地址。" class="mb-base">
 
                             <form data-vv-scope="add-new-address">
                                 <div class="vx-row">
@@ -125,7 +125,7 @@
                                             v-validate="'required|alpha_spaces'"
                                             data-vv-as="field"
                                             name="fullName"
-                                            label="Full Name:"
+                                            label="姓名:"
                                             v-model="fullName"
                                             class="w-full mt-5" />
                                         <span v-show="errors.has('add-new-address.fullName')" class="text-danger">{{ errors.first('add-new-address.fullName') }}</span>
@@ -137,35 +137,10 @@
                                         <vs-input
                                             v-validate="'required|digits:10'"
                                             name="mobileNum"
-                                            label="Mobile Number:"
+                                            label="手机号:"
                                             v-model="mobileNum"
                                             class="w-full mt-5" />
                                         <span v-show="errors.has('add-new-address.mobileNum')" class="text-danger">{{ errors.first('add-new-address.mobileNum') }}</span>
-                                    </div>
-
-                                </div>
-
-                                <div class="vx-row">
-
-
-                                    <div class="vx-col sm:w-1/2 w-full">
-
-                                        <vs-input
-                                            v-validate="'required'"
-                                            name="houseNum"
-                                            label="Flat, House No:"
-                                            v-model="houseNum"
-                                            class="w-full mt-5" />
-                                        <span v-show="errors.has('add-new-address.houseNum')" class="text-danger">{{ errors.first('add-new-address.houseNum') }}</span>
-                                    </div>
-
-                                    <div class="vx-col sm:w-1/2 w-full">
-
-                                        <vs-input
-                                            name="landmark"
-                                            label="Landmark e.g. near apollo hospital:"
-                                            v-model="landmark"
-                                            class="w-full mt-5" />
                                     </div>
 
                                 </div>
@@ -177,7 +152,7 @@
                                         <vs-input
                                             v-validate="'required'"
                                             name="city"
-                                            label="Town/City:"
+                                            label="城市"
                                             v-model="city"
                                             class="w-full mt-5" />
                                         <span v-show="errors.has('add-new-address.city')" class="text-danger">{{ errors.first('add-new-address.city') }}</span>
@@ -187,12 +162,36 @@
                                         <vs-input
                                             v-validate="'required|min:3|max:6|numeric'"
                                             name="pincode"
-                                            label="Pincode:"
+                                            label="邮编:"
                                             v-model="pincode"
                                             class="w-full mt-5" />
                                         <span v-show="errors.has('add-new-address.pincode')" class="text-danger">{{ errors.first('add-new-address.pincode') }}</span>
                                     </div>
                                 </div>
+
+                              <div class="vx-row">
+
+                                <div class="vx-col sm:w-1/2 w-full">
+
+                                  <vs-input
+                                    name="landmark"
+                                    label="区域"
+                                    v-model="landmark"
+                                    class="w-full mt-5" />
+                                </div>
+
+                                <div class="vx-col sm:w-1/2 w-full">
+
+                                  <vs-input
+                                    v-validate="'required'"
+                                    name="houseNum"
+                                    label="详细地址"
+                                    v-model="houseNum"
+                                    class="w-full mt-5" />
+                                  <span v-show="errors.has('add-new-address.houseNum')" class="text-danger">{{ errors.first('add-new-address.houseNum') }}</span>
+                                </div>
+
+                              </div>
 
                                 <div class="vx-row">
 
@@ -202,7 +201,7 @@
                                         <vs-input
                                             v-validate="'required'"
                                             name="state"
-                                            label="State:"
+                                            label="状态:"
                                             v-model="state"
                                             class="w-full mt-5" />
                                         <span v-show="errors.has('add-new-address.state')" class="text-danger">{{ errors.first('add-new-address.state') }}</span>
@@ -210,30 +209,30 @@
 
                                     <div class="vx-col sm:w-1/2 w-full">
 
-                                        <vs-select label="Address Type:" v-model="addressType" class="w-full mt-5">
+                                        <vs-select label="地址类型:" v-model="addressType" class="w-full mt-5">
                                             <vs-select-item :key="index" :value="item.value" :text="item.text" v-for="(item,index) in addressTypeOptions" />
                                         </vs-select>
                                     </div>
 
                                 </div>
-                                      <vs-button class="mt-6 ml-auto flex" @click.prevent="submitNewAddressForm">SAVE AND DELIVER HERE</vs-button>
+                                      <vs-button class="mt-6 ml-auto flex" @click.prevent="submitNewAddressForm">保存地址</vs-button>
                             </form>
                         </vx-card>
                     </div>
 
                     <!-- RIGHT COL: CONTINUE WITH SAVED ADDRESS -->
                     <div class="vx-col lg:w-1/3 w-full">
-                        <vx-card title="John Doe">
+                        <vx-card title="桢桢小仙女">
                             <div>
-                                <p>9447 Glen Eagles Drive</p>
-                                <p>Lewis Center, OH 43035</p>
-                                <p class="my-4">UTC-5: Eastern Standard Time (EST)</p>
-                                <p>202-555-0140</p>
+                                <p>金水东 博学路</p>
+                                <p>华北水利水电大学, 邮编 450000</p>
+                                <p class="my-4">城市: 河南 - 郑州</p>
+                                <p>13269006397</p>
                             </div>
 
                             <vs-divider />
 
-                            <vs-button class="w-full" @click="$refs.checkoutWizard.nextTab()">DELIVER TO THIS ADDRESS</vs-button>
+                            <vs-button class="w-full" @click="$refs.checkoutWizard.nextTab()">送到这个地址</vs-button>
                         </vx-card>
                     </div>
 
@@ -241,13 +240,13 @@
             </tab-content>
 
             <!-- tab 3 content -->
-            <tab-content title="Payment" icon="feather icon-credit-card" class="mb-5">
+            <tab-content title="支付" icon="feather icon-credit-card" class="mb-5">
 
                 <div class="vx-row">
 
                     <!-- LEFT COL: PAYMENT OPTIONS -->
                     <div class="vx-col lg:w-2/3 w-full">
-                        <vx-card title="Payment Options" subtitle="Be sure to click on correct payment option">
+                        <vx-card title="支付设置" subtitle="请选择付款方式">
 
                             <div class="mt-3">
                                 <ul>
@@ -257,24 +256,45 @@
                                     <div class="flex flex-wrap justify-between items-center">
                                         <vs-radio v-model="paymentMethod" vs-value="debit-card">
                                             <div class="flex items-center">
-                                                <img src="@/assets/images/pages/eCommerce/bank.png" alt="bank-logo" height="40" width="50" class="inline-flex">
-                                                <span>US Unlocked Debit Card 12XX XXXX XXXX 0000</span>
+                                                <img src="https://xinqiu-007.oss-cn-beijing.aliyuncs.com/edu_avatar/applyLogo/中国建设银行.png?versionId=CAEQFhiBgMCp4Imh1hciIDA2NmM0NzQwN2Q3YTQ2Mjg5Njk3YzRjZTczMTQ5Mzk3" alt="bank-logo" height="30" width="30" class="inline-flex">
+                                                <span>中国建设银行</span>
                                             </div>
                                         </vs-radio>
-                                        <span>John Doe</span>
-                                        <span>11/2020</span>
+                                      <span>6210-1032-1263-2036</span>
+                                      <span>颜文博</span>
+                                      <span>11/2030</span>
+                                    </div>
+
+                                    <!-- CARD DETAILS -->
+                                    <div class="flex flex-wrap justify-between items-center">
+                                      <vs-radio v-model="paymentMethod" vs-value="debit-card">
+                                        <div class="flex items-center">
+                                          <img src="https://xinqiu-007.oss-cn-beijing.aliyuncs.com/edu_avatar/applyLogo/微信.png?versionId=CAEQFhiBgICNvYSh1hciIDE0YWVjZDE2ZWFlNTRjNDZiM2Y5ZmUwZGYyZmJkNjJi" alt="bank-logo" height="30" width="30" class="inline-flex">
+                                          <span>微信</span>
+                                        </div>
+                                      </vs-radio>
+                                    </div>
+
+                                    <!-- CARD DETAILS -->
+                                    <div class="flex flex-wrap justify-between items-center">
+                                      <vs-radio v-model="paymentMethod" vs-value="debit-card">
+                                        <div class="flex items-center">
+                                          <img src="https://xinqiu-007.oss-cn-beijing.aliyuncs.com/edu_avatar/applyLogo/支付宝.png?versionId=CAEQFhiBgIDWz4yh1hciIDE5YzExYTY0NzM5YTRlZDE5NjU3MGQ4ZjRkNTVkNmI5" alt="aliPay-logo" height="30" width="30" class="inline-flex">
+                                          <span>支付宝</span>
+                                        </div>
+                                      </vs-radio>
                                     </div>
 
                                     <!-- CVV BLOCK -->
                                     <form data-vv-scope="cvv-form" class="mt-4">
                                         <div class="flex items-center">
-                                            <span>Enter CVV: </span>
+                                            <span>支付密码: </span>
                                             <vs-input
                                                 v-validate="'required|digits:3'"
                                                 name="cvv"
                                                 v-model="cvv"
                                                 class="mr-3 ml-2" />
-                                            <vs-button @click.prevent="makePayment" :disabled="false">CONTINUE</vs-button>
+                                            <vs-button @click.prevent="makePayment" :disabled="false">支付</vs-button>
                                         </div>
                                         <span v-show="errors.has('cvv-form.cvv')" class="text-danger ml-24">{{ errors.first('cvv-form.cvv') }}</span>
                                     </form>
@@ -284,22 +304,22 @@
 
                                   <!-- OPTION 2 -->
                                   <li>
-                                    <vs-radio v-model="paymentMethod" vs-value="credit-debit-atmCard">Credit / Debit / ATM Card</vs-radio>
+                                    <vs-radio v-model="paymentMethod" vs-value="credit-debit-atmCard">信用卡/借记卡/ATM卡</vs-radio>
                                   </li>
 
                                   <!-- OPTION 3 -->
                                   <li class="mt-2">
-                                    <vs-radio v-model="paymentMethod" vs-value="netBanking">Net Banking</vs-radio>
+                                    <vs-radio v-model="paymentMethod" vs-value="netBanking">网上银行</vs-radio>
                                   </li>
 
                                   <!-- OPTION 4 -->
-                                  <li class="mt-2">
+                             <!--     <li class="mt-2">
                                     <vs-radio v-model="paymentMethod" vs-value="emi">EMI (Easy Installment)</vs-radio>
-                                  </li>
+                                  </li>-->
 
                                   <!-- OPTION 5 -->
                                   <li class="mt-2">
-                                    <vs-radio v-model="paymentMethod" vs-value="cashOnDelivery">Cash On Delivery</vs-radio>
+                                    <vs-radio v-model="paymentMethod" vs-value="cashOnDelivery">货到付款</vs-radio>
                                   </li>
                                 </ul>
 
@@ -308,7 +328,7 @@
                                 <!-- GIFT CARD -->
                                 <div class="inline-flex items-center cursor-pointer">
                                     <feather-icon icon="PlusSquareIcon" class="mr-2" svgClasses="h-6 w-6" />
-                                    <span>Add Gift Card</span>
+                                    <span>添加礼品卡</span>
                                 </div>
                             </div>
                         </vx-card>
@@ -316,22 +336,22 @@
 
                     <!-- RIGHT COL: PRICE -->
                     <div class="vx-col lg:w-1/3 w-full">
-                        <vx-card title="Price Details">
+                        <vx-card title="价格明细">
 
                             <div class="flex justify-between mb-2">
-                                <span>Price 3 Items</span>
-                                <span class="font-semibold">$699.30</span>
+                                <span>价格</span>
+                                <span class="font-semibold">699.30</span>
                             </div>
                             <div class="flex justify-between mb-2">
-                                <span>Delivery Charges</span>
-                                <span class="text-success">Free</span>
+                                <span>运费</span>
+                                <span class="text-success">免费</span>
                             </div>
 
                             <vs-divider />
 
                             <div class="flex justify-between">
-                                <span>Amount Payable</span>
-                                <span class="font-semibold">$699.30</span>
+                                <span>应付金额</span>
+                                <span class="font-semibold">699.30</span>
                             </div>
                         </vx-card>
                     </div>
@@ -362,8 +382,9 @@ export default {
             state: "",
             addressType: 1,
             addressTypeOptions: [
-                { text: 'Home', value: 1 },
-                { text: 'Office', value: 2 },
+                { text: '家', value: 1 },
+                { text: '公司', value: 2 },
+                { text: '学校', value: 3 }
             ],
 
             // TAB 3

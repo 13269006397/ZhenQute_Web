@@ -10,10 +10,10 @@
 
 <template>
     <div class="px-6 pb-2 pt-6">
-    <vs-button @click="activePrompt = true" class="w-full">Add Task</vs-button>
+    <vs-button @click="activePrompt = true" class="w-full">新增待办</vs-button>
     <vs-prompt
-        vs-title="Add Task"
-        vs-accept-text= "Add Task"
+        vs-title="新增待办"
+        vs-accept-text= "确认"
         vs-button-cancel = "border"
         @vs-cancel="clearFields"
         @vs-accept="submitTodo"
@@ -45,8 +45,8 @@
 
                 <div class="vx-row">
                     <div class="vx-col w-full">
-                        <vs-input v-validate="'required'" name="title" class="w-full mb-4 mt-5" placeholder="Title" v-model="title" :color="validateForm ? 'success' : 'danger'" />
-                        <vs-textarea rows="5" label="Add description" v-model="desc" />
+                        <vs-input v-validate="'required'" name="title" class="w-full mb-4 mt-5" placeholder="标题" v-model="title" :color="validateForm ? 'success' : 'danger'" />
+                        <vs-textarea rows="5" label="添加说明" v-model="desc" />
                     </div>
                 </div>
 

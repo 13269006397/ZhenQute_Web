@@ -34,7 +34,7 @@
                             color="#fff"
                             type="border"
                             v-if="tour.currentStep != tour.steps.length - 1">
-                            Skip
+                            跳过
                         </vs-button>
 
                         <vs-button
@@ -46,7 +46,7 @@
                             type="border"
                             class="mr-3"
                             v-if="tour.currentStep">
-                            Previous
+                            返回
                         </vs-button>
 
                         <vs-button
@@ -59,7 +59,7 @@
                             type="border"
                             class="btn-tour-next"
                             v-if="tour.currentStep != tour.steps.length - 1">
-                            Next
+                            下一步
                         </vs-button>
 
                         <vs-button
@@ -72,7 +72,7 @@
                             type="border"
                             class="btn-tour-finish"
                             v-if="tour.currentStep == tour.steps.length - 1">
-                            Finish
+                            完成
                         </vs-button>
                     </div>
 

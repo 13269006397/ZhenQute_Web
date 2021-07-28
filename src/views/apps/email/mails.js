@@ -2,7 +2,7 @@
   File Name: mails.js
   Description: mail neeeded for mail application
   Strucutre:
-      id 
+      id
       sender name
       sender img
       Subject
@@ -437,7 +437,7 @@ export default [
     "cc": [],
     "bcc": [],
     "message": "<p>Hey John, </p><p><br></p><p>bah kivu decrete epanorthotic unnotched Argyroneta nonius veratrine preimaginary saunders demidolmen Chaldaic allusiveness lorriker unworshipping ribaldish tableman hendiadys outwrest unendeavored fulfillment scientifical Pianokoto Chelonia</p><p><br></p><p>Freudian sperate unchary hyperneurotic phlogiston duodecahedron unflown Paguridea catena disrelishable Stygian paleopsychology cantoris phosphoritic disconcord fruited inblow somewhatly ilioperoneal forrard palfrey Satyrinae outfreeman melebiose</p>",
-    "attachments": ["Interdum.doc"],
+    "attachments": ["颜文博的简历.doc"],
     "isStarred": true,
     "labels": ["company"],
     "time": "Tue Jan 13 2018 10:55:00 GMT+0000 (GMT)",

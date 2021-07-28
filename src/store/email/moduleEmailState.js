@@ -14,10 +14,10 @@ export default {
     mails: emails,
     mail_filter: 'inbox',
     mailTags: [
-        { text: 'Personal', value : 'personal', color:"success"},
-        { text: 'Company', value: 'company', color:"primary"},
-        { text: 'Important', value: 'important', color:"warning"},
-        { text: 'Private', value: 'private', color:"danger"},
+        { text: '个人', value : 'personal', color:"success"},
+        { text: '公司', value: 'company', color:"primary"},
+        { text: '重要', value: 'important', color:"warning"},
+        { text: '私人', value: 'private', color:"danger"},
     ],
     mailSearchQuery: '',
 }

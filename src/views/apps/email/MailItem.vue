@@ -1,10 +1,6 @@
 <!-- =========================================================================================
     File Name: MailItem.vue
     Description: Mail Item - Displays mail item
-    ----------------------------------------------------------------------------------------
-    Item Name: Vuesax Admin - VueJS Dashboard Admin Template
-      Author: Pixinvent
-    Author URL: http://www.themeforest.net/user/pixinvent
 ========================================================================================== -->
 
 <template>

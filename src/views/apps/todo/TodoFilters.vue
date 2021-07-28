@@ -15,7 +15,7 @@
         <div class="px-6 py-4">
             <div class="flex cursor-pointer" :class="{'text-primary': todoFilter == 'all'}" @click="applyTodoFilter('all')">
                 <feather-icon icon="MailIcon" :svgClasses="[{'text-primary stroke-current': todoFilter == 'all'}, 'h-6 w-6']"></feather-icon>
-                <span class="text-lg ml-3">All</span>
+                <span class="text-lg ml-3">所有</span>
             </div>
         </div>
 
@@ -23,7 +23,7 @@
 
         <!-- starred -->
         <div class="px-6 py-4">
-            <h5>Filters</h5>
+            <h5>筛选</h5>
 
             <template v-for="filter in todoFilters">
                 <div class="flex mt-6 cursor-pointer" :class="{'text-primary': todoFilter == filter.filter}" @click="applyTodoFilter(filter.filter)" :key="filter.filter">
@@ -37,7 +37,7 @@
         <vs-divider></vs-divider>
 
         <div class="px-6 py-4">
-            <h5>Labels</h5>
+            <h5>标签</h5>
             <div class="todo__lables-list">
                 <div class="todo__label flex items-center mt-6 cursor-pointer" v-for="(tag, index) in todoTags" :key="index" @click="applyTodoFilter(tag.value)">
                     <div class="h-4 w-4 rounded-full mr-4" :class="'bg-' + tag.color"></div>
@@ -55,10 +55,10 @@ export default{
     data() {
         return {
             todoFilters: [
-                { filterName: 'Starred', filter: 'starred', icon: 'StarIcon' },
-                { filterName: 'Important', filter: 'important', icon: 'InfoIcon' },
-                { filterName: 'Done', filter: 'done', icon: 'CheckIcon' },
-                { filterName: 'Trashed', filter: 'trashed', icon: 'TrashIcon' },
+                { filterName: '星号', filter: 'starred', icon: 'StarIcon' },
+                { filterName: '重要', filter: 'important', icon: 'InfoIcon' },
+                { filterName: '已完成', filter: 'done', icon: 'CheckIcon' },
+                { filterName: '垃圾桶', filter: 'trashed', icon: 'TrashIcon' },
             ]
         }
     },

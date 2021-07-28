@@ -115,11 +115,11 @@ const router = new Router({
                     component: () => import('./views/apps/eCommerce/ECommerceShop.vue'),
                     meta: {
                         breadcrumb: [
-                            { title: 'Home', url: '/' },
-                            { title: 'eCommerce'},
-                            { title: 'Shop', active: true },
+                            { title: '主页', url: '/' },
+                            { title: '电子商务'},
+                            { title: '商城', active: true },
                         ],
-                        pageTitle: 'Shop',
+                        pageTitle: '商城',
                         rule: 'editor'
                     }
                 },
@@ -129,11 +129,11 @@ const router = new Router({
                     component: () => import('./views/apps/eCommerce/ECommerceWishList.vue'),
                     meta: {
                         breadcrumb: [
-                            { title: 'Home', url: '/' },
-                            { title: 'eCommerce', url:'/apps/eCommerce/shop'},
-                            { title: 'Wish List', active: true },
+                            { title: '主页', url: '/' },
+                            { title: '电子商务', url:'/apps/eCommerce/shop'},
+                            { title: '愿望清单', active: true },
                         ],
-                        pageTitle: 'Wish List',
+                        pageTitle: '愿望清单',
                         rule: 'editor'
                     }
                 },
@@ -143,11 +143,11 @@ const router = new Router({
                     component: () => import('./views/apps/eCommerce/ECommerceCheckout.vue'),
                     meta: {
                         breadcrumb: [
-                            { title: 'Home', url: '/' },
-                            { title: 'eCommerce', url:'/apps/eCommerce/shop'},
-                            { title: 'Checkout', active: true },
+                            { title: '主页', url: '/' },
+                            { title: '电子商务', url:'/apps/eCommerce/shop'},
+                            { title: '购物车', active: true },
                         ],
-                        pageTitle: 'Checkout',
+                        pageTitle: '购物车',
                         rule: 'editor'
                     }
                 },

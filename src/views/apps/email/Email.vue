@@ -1,10 +1,6 @@
 <!-- =========================================================================================
     File Name: Email.vue
     Description: Email Application (Inbox)
-    ----------------------------------------------------------------------------------------
-    Item Name: Vuesax Admin - VueJS Dashboard Admin Template
-      Author: Pixinvent
-    Author URL: http://www.themeforest.net/user/pixinvent
 ========================================================================================== -->
 
 
@@ -20,13 +16,13 @@
             <!-- SEARCH BAR -->
             <div class="flex border items-center app-search-container">
                 <feather-icon class="md:inline-flex lg:hidden ml-4 mr-4 cursor-pointer" icon="MenuIcon" @click.stop="toggleEmailSidebar(true)"></feather-icon>
-                <vs-input icon="icon-search" size="large" icon-pack="feather" placeholder="Search Mail" v-model="searchQuery" class="vs-input-no-border vs-input-no-shdow-focus w-full no-icon-border" />
+                <vs-input icon="icon-search" size="large" icon-pack="feather" placeholder="搜索邮件" v-model="searchQuery" class="vs-input-no-border vs-input-no-shdow-focus w-full no-icon-border" />
             </div>
 
             <!-- EMAIL ACTION BAR -->
             <div class="email__actions flex flex-wrap justify-between p-4 border border-r-0 border-l-0 border-solid d-theme-border-grey-light">
                 <div>
-                    <vs-checkbox v-model="selectAllCheckBox" icon-pack="feather" :icon="selectAllIcon" class="select-all-chexkbox ml-0">Select All</vs-checkbox>
+                    <vs-checkbox v-model="selectAllCheckBox" icon-pack="feather" :icon="selectAllIcon" class="select-all-chexkbox ml-0">选择所有</vs-checkbox>
                 </div>
                 <div class="flex">
 
@@ -38,19 +34,19 @@
                             <ul class="my-2">
                                 <li class="px-4 mb-2 flex items-start cursor-pointer hover:text-primary" @click="moveTo('inboxed')" v-if="mailFilter != 'inbox'">
                                     <feather-icon icon="MailIcon" svg-classes="h-5 w-5" />
-                                    <span class="ml-3">Inbox</span>
+                                    <span class="ml-3">收件箱</span>
                                 </li>
                                 <li class="px-4 mb-2 flex items-start cursor-pointer hover:text-primary" @click="moveTo('drafted')" v-if="mailFilter != 'draft'">
                                     <feather-icon icon="Edit2Icon" svg-classes="h-5 w-5"></feather-icon>
-                                    <span class="ml-3">Draft</span>
+                                    <span class="ml-3">草稿</span>
                                 </li>
                                 <li class="px-4 mb-2 flex items-start cursor-pointer hover:text-primary" @click="moveTo('spam')" v-if="mailFilter != 'spam'">
                                     <feather-icon icon="InfoIcon" svg-classes="h-5 w-5"></feather-icon>
-                                    <span class="ml-3">Spam</span>
+                                    <span class="ml-3">垃圾邮件</span>
                                 </li>
                                 <li class="px-4 flex items-start cursor-pointer hover:text-primary" @click="moveTo('trashed')" v-if="mailFilter != 'trash'">
                                     <feather-icon icon="TrashIcon" svg-classes="h-5 w-5"></feather-icon>
-                                    <span class="ml-3">Trash</span>
+                                    <span class="ml-3">废物箱</span>
                                 </li>
                             </ul>
                         </vs-dropdown-menu>

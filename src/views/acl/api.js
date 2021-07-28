@@ -63,3 +63,11 @@ export const findAvatar = params => {
     .post('/api-user/user/findAvatar', JSON.stringify(params))
     .then(res => res.data)
 }
+
+export const findContactsList = params => {
+  return axios
+    .post('/api-user/user/findContactsList', JSON.stringify(params))
+    .then(res => res.data)
+}
+
+
